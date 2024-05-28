@@ -1,12 +1,12 @@
 // Задание 1
 
-export type Pick<T, K extends keyof T> = {
+export type Pick<T extends object, K extends keyof T> = {
     [P in K]: T[P];
 }
 
 // Задание 2
 
-export type Readonly<T> = {
+export type Readonly<T extends object> = {
     readonly [P in keyof T]: T[P]
 }
 
@@ -16,6 +16,6 @@ export type Readonly<T> = {
 // и у типа появляются новые свойства? Я сделал вот это вот, но по факту оно просто добавит к каждому типу | P и всё,
 // уверен что это не то, что нужно
 
-export type push<V, U extends V> = {
-    [P in keyof V]: [V | U]
+type push<V, U> = {
+    [P in keyof V]: [V, U]
 }
